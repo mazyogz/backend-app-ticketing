@@ -1,8 +1,9 @@
 'use strict';
 const {
-  Model
+  DataTypes, Model
 } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+const sequelize = require('../config/db.local.config'); // connect to database railway
+module.exports = () => {
   class User extends Model {
     /**
      * Helper method for defining associations.

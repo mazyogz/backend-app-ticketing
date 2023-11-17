@@ -9,10 +9,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+const {getUser, editUser, register, login, logout, forgotPassword, forgotPasswordOTP, resetPassword, resetPasswordOTP} = require('./controller/UserController')
 const prefix = '/v1/api/';
 
 // const db = require('./config/db.config'); //Connect to database railway
 const db = require('./config/db.local.config'); //Connect to database local
+
+app.get(prefix + 'users', getUser);
+// app.put(prefix + 'editusers', verifyToken, editUser);
+app.post(prefix + 'register', register);
+app.post(prefix + 'login', login);
+app.delete(prefix + 'logout', logout);
+app.post(prefix + 'forgotPassword', forgotPassword);
+app.post(prefix + 'forgot-password-otp', forgotPasswordOTP);
+app.post(prefix + 'reset-password', resetPassword);
+app.post(prefix + 'reset-password-otp', resetPasswordOTP);
 
 db.authenticate()
   .then(() => console.log('Database connected'))
